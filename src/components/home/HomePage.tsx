@@ -1,10 +1,3 @@
-// import { useQuery } from "react-query";
-
-// import Drawer from "@material-ui/core/Drawer";
-// import LinearProgress from "@material-ui/core/LinearProgress";
-// import Grid from "@material-ui/core/Grid";
-// import Badge from "@material-ui/core/Badge";
-
 import React from "react";
 import { Link } from "react-router-dom";
 import DogeCoin from "../../DogeCoin.jpg";
@@ -104,16 +97,6 @@ const HomePage = () => {
         >
           Report
         </Button>
-        {/* <Button
-          className={classes.linkButtons}
-          component={Link}
-          to="/list"
-          size="small"
-          color="primary"
-          variant="contained"
-        >
-          List
-        </Button> */}
       </CardActions>
     </Card>
   );

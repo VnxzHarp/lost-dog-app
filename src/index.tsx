@@ -7,10 +7,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 const client = new QueryClient();
 
 ReactDOM.render(
-  <Router>
-    <QueryClientProvider client={client}>
+  <QueryClientProvider client={client}>
+    <Router>
       <App />
-    </QueryClientProvider>
-  </Router>,
+    </Router>
+  </QueryClientProvider>,
   document.getElementById("root")
 );

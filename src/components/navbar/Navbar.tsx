@@ -1,18 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 //components
-import AppBar from "@material-ui/core/AppBar";
-// import Toolbar from "@material-ui/core/Toolbar";
-import { Typography, IconButton, Button, Toolbar } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import {
+  Typography,
+  AppBar,
+  IconButton,
+  Button,
+  Toolbar,
+} from "@material-ui/core";
 import { useScrollTrigger, Slide } from "@material-ui/core";
-
+import MenuIcon from "@material-ui/icons/Menu";
 //styles
 import { useStyles } from "./Navbar.styles";
-
-interface Props {
+//types
+type Props = {
   children: React.ReactElement;
-}
+};
 
 const HideOnScroll = (props: Props) => {
   const { children } = props;
