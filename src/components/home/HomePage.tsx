@@ -48,7 +48,48 @@ const HomePage = () => {
           <Typography variant="body2" color="textSecondary" component="p">
             This is app was made to help doggos who are far from home, if you
             see a stray doggo, help us uploading his position and taking a photo
-            of him. You can post your lost doggos aswell.
+            of him. You can post your lost doggos aswell. This is app was made
+            to help doggos who are far from home, if you see a stray doggo, help
+            us uploading his position and taking a photo of him. You can post
+            your lost doggos aswell. This is app was made to help doggos who are
+            far from home, if you see a stray doggo, help us uploading his
+            position and taking a photo of him. You can post your lost doggos
+            aswell. This is app was made to help doggos who are far from home,
+            if you see a stray doggo, help us uploading his position and taking
+            a photo of him. You can post your lost doggos aswell. This is app
+            was made to help doggos who are far from home, if you see a stray
+            doggo, help us uploading his position and taking a photo of him. You
+            can post your lost doggos aswell. This is app was made to help
+            doggos who are far from home, if you see a stray doggo, help us
+            uploading his position and taking a photo of him. You can post your
+            lost doggos aswell. This is app was made to help doggos who are far
+            from home, if you see a stray doggo, help us uploading his position
+            and taking a photo of him. You can post your lost doggos aswell.
+            This is app was made to help doggos who are far from home, if you
+            see a stray doggo, help us uploading his position and taking a photo
+            of him. You can post your lost doggos aswell. This is app was made
+            to help doggos who are far from home, if you see a stray doggo, help
+            us uploading his position and taking a photo of him. You can post
+            your lost doggos aswell. This is app was made to help doggos who are
+            far from home, if you see a stray doggo, help us uploading his
+            position and taking a photo of him. You can post your lost doggos
+            aswell. This is app was made to help doggos who are far from home,
+            if you see a stray doggo, help us uploading his position and taking
+            a photo of him. You can post your lost doggos aswell. This is app
+            was made to help doggos who are far from home, if you see a stray
+            doggo, help us uploading his position and taking a photo of him. You
+            can post your lost doggos aswell. This is app was made to help
+            doggos who are far from home, if you see a stray doggo, help us
+            uploading his position and taking a photo of him. You can post your
+            lost doggos aswell. This is app was made to help doggos who are far
+            from home, if you see a stray doggo, help us uploading his position
+            and taking a photo of him. You can post your lost doggos aswell.
+            This is app was made to help doggos who are far from home, if you
+            see a stray doggo, help us uploading his position and taking a photo
+            of him. You can post your lost doggos aswell. This is app was made
+            to help doggos who are far from home, if you see a stray doggo, help
+            us uploading his position and taking a photo of him. You can post
+            your lost doggos aswell.
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -57,13 +98,13 @@ const HomePage = () => {
           className={classes.linkButtons}
           component={Link}
           to="/form"
-          size="small"
+          size="large"
           color="primary"
           variant="contained"
         >
-          Report the Doggo
+          Report
         </Button>
-        <Button
+        {/* <Button
           className={classes.linkButtons}
           component={Link}
           to="/list"
@@ -71,8 +112,8 @@ const HomePage = () => {
           color="primary"
           variant="contained"
         >
-          List of Doggos
-        </Button>
+          List
+        </Button> */}
       </CardActions>
     </Card>
   );

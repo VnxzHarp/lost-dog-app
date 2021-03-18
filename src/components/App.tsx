@@ -4,6 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
 import ListMenu from "./navbar/ListMenu";
 import Contain from "./navbar/Contain";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import { Fab } from "@material-ui/core";
+import ScrollTop from "./utils/ScrollTop";
 //Routes
 import HomePage from "./home/HomePage";
 import AboutPage from "./about/AboutPage";
@@ -29,6 +32,11 @@ const App = () => {
           <Route path="/form" component={FormPage} />
           <Route component={PageNotFound} />
         </Switch>
+        <ScrollTop>
+          <Fab color="secondary" size="medium" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
       </Wrapper>
     </ThemeProvider>
   );
