@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { createMuiTheme } from "@material-ui/core/styles";
-import { lightBlue, purple } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: purple[500],
+      main: "#3a0ca3",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#f72585",
     },
   },
 });

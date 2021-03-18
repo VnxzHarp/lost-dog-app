@@ -1,7 +1,7 @@
 import React from "react";
 
 const Contain = () => {
-  return <div>Hey you</div>;
+  return <div></div>;
 };
 
 export default Contain;
