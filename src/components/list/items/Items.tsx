@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
+import Ghibli from "../../../Ghibli.jpg";
 //styles
 import { useStyles } from "./Items.styles";
 //types
@@ -21,25 +22,26 @@ const Items: React.FC<Props> = ({ item }) => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="src\DogeCoin.jpg"
-          title="Contemplative Reptile"
+          component="img"
+          src={Ghibli}
+          title={item.title}
         />
-        <CardContent>
+        <CardContent className={classes.content}>
           <Typography
             className={classes.title}
             color="textSecondary"
             gutterBottom
           >
-            {item.birth_year}
+            {item.director}
           </Typography>
           <Typography variant="h5" component="h2">
-            {item.name}
+            {item.title}
           </Typography>
-          <Typography className={classes.pos} color="textSecondary">
-            Gender:{item.gender}
+          <Typography className={classes.descript} color="textSecondary">
+            Description:{item.description}
           </Typography>
           <Typography variant="body2" component="p">
-            Birthday: {item.birth_year}
+            Year: {item.release_date}
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -3,6 +3,9 @@ import { useQuery } from "react-query";
 //components
 import Items from "./items/Items";
 import { LinearProgress, Grid } from "@material-ui/core";
+//syles
+import { useStyles } from "./ListPage.styles";
+
 //Types
 export type CartItemType = {
   id: number | string;
@@ -21,35 +24,43 @@ export type CartItemType = {
   index: number;
   gender: string;
   hair_color: string;
+  sprites: { front_default: string };
+  director: string;
+  release_date: string;
 };
+const getData = async (): Promise<CartItemType[]> =>
+  await (await fetch("https://ghibliapi.herokuapp.com/films")).json();
 
-const getProducts = async (): Promise<CartItemType> =>
-  await (await fetch("https://swapi.dev/api/people/")).json();
+// const getProducts = async (): Promise<CartItemType> =>
+//   await (await fetch("https://swapi.dev/api/people/")).json();
+
+// const ListPage = () => {
+//   const classes = useStyles();
+//   const { data, isLoading, isError, error } = useQuery<CartItemType>(
+//     "products",  // key of the query
+//     getProducts
+//   );
 
 const ListPage = () => {
-  const { data, isLoading, isError, error } = useQuery<CartItemType>(
-    "products",
-    getProducts
+  const classes = useStyles();
+  const { data, isLoading, isError, error } = useQuery<CartItemType[]>(
+    "data",
+    getData
   );
-  console.log(data?.results);
+  console.log(data);
+  // console.log(data?.results);
 
   if (isLoading) return <LinearProgress />;
   if (isError) return <div>Error: {error} </div>;
 
   return (
     <>
-      <Grid container spacing={3}>
-        {data?.results?.map((item, index) => (
-          <Grid item key={index} xs={12} sm={4}>
+      <Grid container spacing={3} className={classes.cardContainer}>
+        {data?.map((item, index) => (
+          <Grid item key={index} xs={12} sm={6} md={4}>
             <Items item={item} />
           </Grid>
         ))}
-        {/* <Grid item xs={12} sm={4}>
-          {data?.results?.map((item) =>(
-      
-          ) )}
-          
-        </Grid> */}
       </Grid>
     </>
   );
