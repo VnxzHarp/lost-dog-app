@@ -12,6 +12,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
+      textDecoration: "none",
     },
     toolbar: {
       backgroundColor: "#4cc9f0",

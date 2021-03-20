@@ -42,7 +42,13 @@ const Navbar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title} color="primary">
+            <Typography
+              component={Link}
+              to="/"
+              variant="h6"
+              className={classes.title}
+              color="primary"
+            >
               DogFinder
             </Typography>
             <Button

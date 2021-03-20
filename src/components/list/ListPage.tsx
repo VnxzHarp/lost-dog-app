@@ -1,57 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 //components
-import Items from "./items/Items";
+import Items from "../items/Items";
 import { LinearProgress, Grid } from "@material-ui/core";
 //syles
 import { useStyles } from "./ListPage.styles";
-
 //Types
-export type CartItemType = {
+export type DataItemType = {
   id: number | string;
   category: string;
   description: string;
   image: string;
-  price: number;
   title: string;
   amount: number;
   name: string;
   url: string;
-  order: number;
-  birth_year: string;
-  Items: any;
   results: any[];
   index: number;
-  gender: string;
-  hair_color: string;
-  sprites: { front_default: string };
   director: string;
   release_date: string;
 };
-const getData = async (): Promise<CartItemType[]> =>
+const getData = async (): Promise<DataItemType[]> =>
   await (await fetch("https://ghibliapi.herokuapp.com/films")).json();
-
-// const getProducts = async (): Promise<CartItemType> =>
-//   await (await fetch("https://swapi.dev/api/people/")).json();
-
-// const ListPage = () => {
-//   const classes = useStyles();
-//   const { data, isLoading, isError, error } = useQuery<CartItemType>(
-//     "products",  // key of the query
-//     getProducts
-//   );
 
 const ListPage = () => {
   const classes = useStyles();
-  const { data, isLoading, isError, error } = useQuery<CartItemType[]>(
-    "data",
-    getData
-  );
+  const { data, isLoading, error } = useQuery<DataItemType[]>("data", getData);
   console.log(data);
   // console.log(data?.results);
 
   if (isLoading) return <LinearProgress />;
-  if (isError) return <div>Error: {error} </div>;
+  if (error) return <div>Something went wrong </div>;
 
   return (
     <>
@@ -65,5 +44,4 @@ const ListPage = () => {
     </>
   );
 };
-
 export default ListPage;
