@@ -32,8 +32,8 @@ const Navbar = () => {
   return (
     <>
       <HideOnScroll>
-        <AppBar position="sticky">
-          <Toolbar className={classes.toolbar} id="back-to-top-anchor">
+        <AppBar>
+          <Toolbar className={classes.toolbar}>
             <IconButton
               edge="start"
               className={classes.menuButton}

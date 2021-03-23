@@ -1,18 +1,12 @@
 import React from "react";
-import {
-  Route,
-  Switch,
-  useParams,
-  Link,
-  RouteComponentProps,
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 //components
 import Navbar from "./navbar/Navbar";
 import ListMenu from "./navbar/ListMenu";
 import Contain from "./navbar/Contain";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { Fab } from "@material-ui/core";
+import { Fab, Toolbar } from "@material-ui/core";
 import ScrollTop from "./utils/ScrollTop";
 //Routes
 import HomePage from "./home/HomePage";
@@ -32,6 +26,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Wrapper>
         <Navbar />
+        <Toolbar id="back-to-top-anchor" />
         <ListMenu />
         <Contain />
         <Switch>
