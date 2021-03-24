@@ -2,7 +2,7 @@ import React from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { useQuery } from "react-query";
 //components
-import Ghibli from "../Ghibli.jpg";
+import Ghibli from "../../Ghibli.jpg";
 import {
   LinearProgress,
   Grid,

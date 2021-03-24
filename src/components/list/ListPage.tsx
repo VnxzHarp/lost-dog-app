@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 //components
-import ManageList from "./ManageList";
+import ManageList from "./ManageListPage";
 import { LinearProgress } from "@material-ui/core";
 //Types
 export type DataItemType = {

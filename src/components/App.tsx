@@ -15,8 +15,7 @@ import FormPage from "./form/FormPage";
 import ListPage from "./list/ListPage";
 import PageNotFound from "./PageNotFound";
 import { Wrapper } from "./App.styles";
-import ItemPage from "./list/ItemPage";
-import ItemsDetail from "./ItemsDetail";
+import ItemsDetail from "./itemDetail/ItemsDetail";
 //styles
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./App.styles";
@@ -32,7 +31,6 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/about" component={AboutPage} />
-          <Route exact path="list/:listId" component={ItemPage} />
           <Route exact path="/list" component={ListPage} />
           <Route path="/form" component={FormPage} />
           <Route path="/list/:id" component={ItemsDetail} />

@@ -2,12 +2,18 @@ import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
+  cardRoot: {
+    flexGrow: 1,
+    maxWidth: 400,
+    margin: "auto",
+  },
+  formRoot: {
+    height: 450,
+    maxWidth: 400,
+    margin: "auto",
+  },
   inputContainer: {
     marginTop: 20,
-  },
-  paper: {
-    height: 140,
-    width: 100,
   },
   formControl: {
     minWidth: 120,
@@ -24,5 +30,15 @@ export const useStyles = makeStyles({
     color: "white",
     height: 48,
     padding: "0 30px",
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  gridButtonSubmit: {
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  gridFormControl: {
+    display: "flex",
+    justifyContent: "space-around",
   },
 });
