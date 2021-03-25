@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 //styles
 import { useStyles } from "./FormPage.styles";
 import AngryDoge from "../../AngryDoge.png";
+import { options } from "../utils/ListOptions";
+
 import {
   Box,
   Grid,
@@ -23,38 +25,56 @@ import {
 } from "@material-ui/core";
 
 type UseStateType = {
-  director: string;
-  release_date: string;
-  title: string;
+  color: string;
+  breed: string;
+  size: string;
+  status: string;
+  name?: string;
+  description?: string;
+  options?: string | number;
+  num: number | null;
 };
 type DataItemType = {
   id?: string | undefined;
-  description: string;
   title: string;
   name?: string;
   director: string;
   release_date: string;
+  status?: string;
+  breed: string;
+  size: string;
+  color: string;
+  location?: string;
+  photo?: string;
+  description?: string;
+  option?: string[];
 };
-const getData = async (): Promise<DataItemType[]> =>
-  await (await fetch("https://ghibliapi.herokuapp.com/films")).json();
+// const getData = async (): Promise<DataItemType[]> =>
+//   await (await fetch("https://ghibliapi.herokuapp.com/films")).json();
 
 // const addData = async (newData): Promise<DataItemType> =>
 //   await (await fetch("https://ghibliapi.herokuapp.com/films", newData))
+const dogFilters = [
+  {
+    name: "status",
+    label: "Status",
+    defaultOption: "Filter by Status",
+    num: 0,
+  },
+  { name: "size", label: "Size", defaultOption: "Filter by Size", num: 1 },
+  { name: "color", label: "Color", defaultOption: "Filter by Color", num: 2 },
+  { name: "breed", label: "Breed", defaultOption: "Filter by Breed", num: 3 },
+];
+const initialFilter = { color: "", breed: "", size: "", status: "", num: null };
 
-const initialFilter: UseStateType = {
-  director: "",
-  title: "",
-  release_date: "",
-};
 const FormPage: React.FC = () => {
   const classes = useStyles();
   const [state, setState] = useState<UseStateType>(initialFilter);
-
   // const mutation = useMutation(() => {
   //   return fetch("/api", state);
   // });
-
-  const { data, isLoading, error } = useQuery<DataItemType[]>("data", getData);
+  console.log(options[1]);
+  // const { data, isLoading, error } = useQuery<DataItemType[]>("data", getData);
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: unknown }>
   ) => {
@@ -64,9 +84,8 @@ const FormPage: React.FC = () => {
       [name]: event.target.value,
     });
   };
-  console.log(data);
-  if (isLoading) return <LinearProgress />;
-  if (error) return <div>Something went wrong </div>;
+  // if (isLoading) return <LinearProgress />;
+  // if (error) return <div>Something went wrong </div>;
   return (
     <>
       <Card className={classes.root}>
@@ -97,98 +116,53 @@ const FormPage: React.FC = () => {
               />
             </Grid>
           </CardContent>
+          <CardContent>
+            <Grid item xs={12}>
+              <TextField
+                className={classes.textField}
+                id="standard-full-width"
+                label="Description"
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                color="secondary"
+                variant="filled"
+              />
+            </Grid>
+          </CardContent>
           <CardContent className={classes.content}>
             <Grid container spacing={3}>
               <Grid container justify="space-around" alignItems="center">
-                <FormControl className={classes.formControl}>
-                  <InputLabel
-                    variant="filled"
-                    color="secondary"
-                    htmlFor="release_date-native-simple"
-                  >
-                    Release Date
-                  </InputLabel>
-                  <Select
-                    value={state.release_date}
-                    onChange={handleChange}
-                    inputProps={{
-                      name: "release_date",
-                      id: "release_date-native-simple",
-                    }}
-                  >
-                    {data?.map((elem, index) => (
-                      <MenuItem key={index} value={elem.release_date}>
-                        {elem.release_date}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <FormControl className={classes.formControl}>
-                  <InputLabel variant="filled" htmlFor="director-native-simple">
-                    Director
-                  </InputLabel>
-                  <Select
-                    value={state.director}
-                    onChange={handleChange}
-                    inputProps={{
-                      name: "director",
-                      id: "director-native-simple",
-                    }}
-                  >
-                    {data?.map((elem, index) => (
-                      <MenuItem key={index} value={elem.director}>
-                        {elem.director}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <FormControl className={classes.formControl}>
-                  <InputLabel
-                    variant="filled"
-                    htmlFor="title-mutiple-name-label"
-                  >
-                    Title
-                  </InputLabel>
-                  <Select
-                    value={state.title}
-                    onChange={handleChange}
-                    inputProps={{
-                      name: "title",
-                      id: "title-native-simple",
-                    }}
-                  >
-                    {data?.map((elem, index) => (
-                      <MenuItem key={index} value={elem.title}>
-                        {elem.title}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <FormControl className={classes.formControl}>
-                  <InputLabel
-                    variant="filled"
-                    htmlFor="title-mutiple-name-label"
-                  >
-                    Title
-                  </InputLabel>
-                  <Select
-                    value={state.title}
-                    onChange={() => null}
-                    inputProps={{
-                      name: "title",
-                      id: "title-native-simple",
-                    }}
-                  >
-                    {data?.map((elem, index) => (
-                      <MenuItem key={index} value={elem.title}>
-                        {elem.title}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                {dogFilters.map(
+                  ({ name, label, defaultOption, num }, index) => (
+                    <FormControl key={index} className={classes.formControl}>
+                      <InputLabel
+                        variant="filled"
+                        htmlFor={`${name}-mutiple-name-label`}
+                      >
+                        {label}
+                      </InputLabel>
+                      <Select
+                        value={"defaultOption"}
+                        onChange={() => null}
+                        inputProps={{
+                          name: { name },
+                          id: `${name}-mutiple-name-label`,
+                        }}
+                      >
+                        {options[num].map((elem, index) => {
+                          return (
+                            <option key={index} value={elem}>
+                              {elem}
+                            </option>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                  )
+                )}
               </Grid>
             </Grid>
           </CardContent>
@@ -212,3 +186,11 @@ const FormPage: React.FC = () => {
 };
 
 export default FormPage;
+
+// {options[index].map((elem, index) => {
+//   return (
+//     <option key={index} value={elem}>
+//       {elem}
+//     </option>
+//   );
+// })}

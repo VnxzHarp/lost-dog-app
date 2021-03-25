@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
@@ -11,15 +10,14 @@ export const useStyles = makeStyles({
     backgroundColor: "#4cc9f0",
     borderRadius: 5,
   },
-  cover: {
-    width: "100%",
-  },
+  cover: {},
   formControl: {
     minWidth: 120,
     maxWidth: 300,
     background: "#f72585",
     borderRadius: 5,
     color: "#3a0ca3",
+    marginBottom: 5,
   },
   content: {
     marginBottom: 15,

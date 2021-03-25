@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
-import dogeCircle from "../../dogeCircle.jpg";
+import DogeCircle from "../../DogeCircle.jpg";
 //styles
 import { useStyles } from "./Items.styles";
 //types
@@ -27,7 +27,7 @@ const Items: React.FC<Props> = (
       <CardMedia
         className={classes.media}
         component="img"
-        src={dogeCircle}
+        src={DogeCircle}
         title={"dogeCircle"}
       />
       <CardContent className={classes.content}>
