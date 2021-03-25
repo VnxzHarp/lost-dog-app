@@ -29,13 +29,7 @@ const HomePage = () => {
           title="DogFinderApp"
         />
         <CardContent>
-          <Typography
-            align="center"
-            className={classes.titleText}
-            gutterBottom
-            variant="h4"
-            component="h2"
-          >
+          <Typography align="center" gutterBottom variant="h4" component="h2">
             Help Lost Doggos
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">

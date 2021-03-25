@@ -6,15 +6,14 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
-import Ghibli from "../../Ghibli.jpg";
+import dogeCircle from "../../dogeCircle.jpg";
 //styles
 import { useStyles } from "./Items.styles";
 //types
-import { DataItemType } from "../list/ListPage";
+import { DogsItemType } from "../list/ListPage";
 type Props = {
-  item: DataItemType;
+  item: DogsItemType;
   // handleClickMoreInfo: (clickedItem: DataItemType) => void;
 };
 type TParams = { id: string; url: string | undefined };
@@ -25,35 +24,39 @@ const Items: React.FC<Props> = (
   const classes = useStyles();
   return (
     <Card className={classes.root} variant="outlined">
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          component="img"
-          src={Ghibli}
-          title={item.title}
-        />
-        <CardContent className={classes.content}>
-          <Typography
-            className={classes.title}
-            color="textSecondary"
-            gutterBottom
-          >
-            {item.director}
-          </Typography>
-          <Typography variant="h5" component="h2">
-            {item.title}
-          </Typography>
-          <Typography className={classes.descript} color="textSecondary">
-            {item.description}
-          </Typography>
-          <Typography variant="body2" component="p">
-            Year: {item.release_date}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <CardMedia
+        className={classes.media}
+        component="img"
+        src={dogeCircle}
+        title={"dogeCircle"}
+      />
+      <CardContent className={classes.content}>
+        <Typography color="textPrimary" variant="h5" component="h2">
+          Location: {item.location}
+        </Typography>
+        <Typography variant="h5" component="h2">
+          Breed: {item.breed}
+        </Typography>
+        <Typography variant="h5" component="h2">
+          Size: {item.size}
+        </Typography>
+        <Typography
+          className={classes.descript}
+          color="textPrimary"
+          component="p"
+        >
+          Description: {item.description}
+        </Typography>
+      </CardContent>
 
       <CardActions>
-        <Button size="small" component={Link} to={`/list/${item.id}`}>
+        <Button
+          size="medium"
+          variant="contained"
+          color="secondary"
+          component={Link}
+          to={`/list/${item.id}`}
+        >
           MORE INFO
         </Button>
       </CardActions>

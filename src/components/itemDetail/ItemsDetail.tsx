@@ -2,10 +2,13 @@ import React from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { useQuery } from "react-query";
 //components
-import Ghibli from "../../Ghibli.jpg";
+import lostDoge from "../../lost-doge.jpg";
+import { getData } from "../../api/ApiUtils";
+//styles
+import { useStyles } from "./ItemsDetail.styles";
+
 import {
   LinearProgress,
-  Grid,
   CardMedia,
   CardActionArea,
   Typography,
@@ -17,80 +20,70 @@ import {
 //types
 
 type TParams = { id: string };
-type DataItemType = {
-  id: number | string;
-  category: string;
-  description: string;
-  image: string;
-  title: string;
-  amount: number;
+type DogsItemType = {
+  id: string | number;
   name: string;
-  url: string;
-  results: any[];
-  index: number;
-  director: string;
-  release_date: string;
-  tula: string;
+  breed: string;
+  size: string;
+  color: string;
+  location: string;
+  photo: string;
+  status: string;
+  description: string;
 };
 
-const getData = async (): Promise<DataItemType[]> =>
-  await (await fetch(`https://ghibliapi.herokuapp.com/films/`)).json();
+// const getData = async (): Promise<DogsItemType[]> =>
+//   await (await fetch(`https://ghibliapi.herokuapp.com/films/`)).json();
 
 const ItemsDetail = ({ match }: RouteComponentProps<TParams>) => {
-  const tula = match.params.id;
+  const classes = useStyles();
+  const tula = parseInt(match.params.id);
 
-  const { data, isLoading, error } = useQuery<DataItemType[]>("data", getData);
-
+  const { data, isLoading, error } = useQuery<DogsItemType[]>("data", getData);
+  console.log(data);
+  console.log(typeof tula);
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong </div>;
   return (
-    <Grid item xs={12}>
-      <Card
-        // className={classes.root}
-        variant="outlined"
-      >
-        {data
-          ?.filter((item) => item.id === tula)
-          .map((item, index) => (
-            <CardActionArea key={index}>
-              <CardMedia
-                // className={classes.media}
-                component="img"
-                src={Ghibli}
-                title={item.title}
-              />
-              <CardContent
-              //  className={classes.content}
-              >
-                <Typography
-                  // className={classes.title}
-                  color="textSecondary"
-                  gutterBottom
-                >
-                  {item.director}
-                </Typography>
-                <Typography variant="h5" component="h2">
-                  {item.title}
-                </Typography>
-                <Typography
-                  //  className={classes.descript}
-                  color="textSecondary"
-                >
-                  {item.description}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  Year: {item.release_date}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          ))}
-        <CardActions>
-          <Button size="small" component={Link} to={`/list`}>
-            Back
-          </Button>
-        </CardActions>
-      </Card>
-    </Grid>
+    <Card className={classes.root}>
+      {data
+        ?.filter((item) => item.id === tula)
+        .map((item, index) => (
+          <CardActionArea key={index}>
+            <CardMedia
+              // className={classes.media}
+              component="img"
+              src={lostDoge}
+              title={"lostDoge"}
+            />
+            <CardContent>
+              <Typography color="textPrimary" variant="h5" component="h2">
+                Location: {item.location}
+              </Typography>
+              <Typography variant="h5" component="h2">
+                Breed: {item.breed}
+              </Typography>
+              <Typography variant="h5" component="h2">
+                Size: {item.size}
+              </Typography>
+              <Typography color="textPrimary" component="p">
+                Description: {item.description}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        ))}
+      <CardActions>
+        <Button
+          size="medium"
+          variant="contained"
+          color="secondary"
+          component={Link}
+          to={`/list`}
+        >
+          Back
+        </Button>
+      </CardActions>
+    </Card>
   );
 };
 

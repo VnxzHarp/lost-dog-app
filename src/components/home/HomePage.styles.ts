@@ -4,14 +4,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
   root: {
-    maxWidth: "80%",
-    margin: "10%",
+    maxWidth: "60%",
+    margin: "0 auto",
     borderRadius: 20,
   },
   cover: {
     width: "100%",
   },
-  titleText: {},
   controls: {
     display: "flex",
     justifyContent: "space-around",

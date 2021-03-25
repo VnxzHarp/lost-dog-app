@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import { Link } from "react-router-dom";
 //styles
 import { useStyles } from "./FormPage.styles";
 import AngryDoge from "../../AngryDoge.png";
 import {
+  Box,
   Grid,
   FormControl,
   InputLabel,
@@ -14,11 +15,11 @@ import {
   Card,
   CardActionArea,
   CardMedia,
-  CardContent,
-  CardActions,
   LinearProgress,
   TextField,
   Paper,
+  CardContent,
+  CardActions,
 } from "@material-ui/core";
 
 type UseStateType = {
@@ -34,9 +35,11 @@ type DataItemType = {
   director: string;
   release_date: string;
 };
-
 const getData = async (): Promise<DataItemType[]> =>
   await (await fetch("https://ghibliapi.herokuapp.com/films")).json();
+
+// const addData = async (newData): Promise<DataItemType> =>
+//   await (await fetch("https://ghibliapi.herokuapp.com/films", newData))
 
 const initialFilter: UseStateType = {
   director: "",
@@ -46,6 +49,11 @@ const initialFilter: UseStateType = {
 const FormPage: React.FC = () => {
   const classes = useStyles();
   const [state, setState] = useState<UseStateType>(initialFilter);
+
+  // const mutation = useMutation(() => {
+  //   return fetch("/api", state);
+  // });
+
   const { data, isLoading, error } = useQuery<DataItemType[]>("data", getData);
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: unknown }>
@@ -56,32 +64,27 @@ const FormPage: React.FC = () => {
       [name]: event.target.value,
     });
   };
-  console.log(state);
+  console.log(data);
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong </div>;
   return (
     <>
-      <Card className={classes.cardRoot}>
+      <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
+            className={classes.cover}
             component="img"
             alt="DogFinderApp"
             height="140"
             src={AngryDoge}
-            title="AngryDoge"
+            title="DogFinderApp"
           />
         </CardActionArea>
-      </Card>
-      <Paper>
-        <form className={classes.formRoot}>
-          <Grid
-            container
-            justify="space-around"
-            alignItems="center"
-            spacing={2}
-          >
+        <form>
+          <CardContent>
             <Grid item xs={12}>
               <TextField
+                className={classes.textField}
                 id="standard-full-width"
                 label="Name"
                 fullWidth
@@ -89,135 +92,121 @@ const FormPage: React.FC = () => {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                color="secondary"
                 variant="filled"
               />
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={3}
-              className={classes.gridFormControl}
+          </CardContent>
+          <CardContent className={classes.content}>
+            <Grid container spacing={3}>
+              <Grid container justify="space-around" alignItems="center">
+                <FormControl className={classes.formControl}>
+                  <InputLabel
+                    variant="filled"
+                    color="secondary"
+                    htmlFor="release_date-native-simple"
+                  >
+                    Release Date
+                  </InputLabel>
+                  <Select
+                    value={state.release_date}
+                    onChange={handleChange}
+                    inputProps={{
+                      name: "release_date",
+                      id: "release_date-native-simple",
+                    }}
+                  >
+                    {data?.map((elem, index) => (
+                      <MenuItem key={index} value={elem.release_date}>
+                        {elem.release_date}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl className={classes.formControl}>
+                  <InputLabel variant="filled" htmlFor="director-native-simple">
+                    Director
+                  </InputLabel>
+                  <Select
+                    value={state.director}
+                    onChange={handleChange}
+                    inputProps={{
+                      name: "director",
+                      id: "director-native-simple",
+                    }}
+                  >
+                    {data?.map((elem, index) => (
+                      <MenuItem key={index} value={elem.director}>
+                        {elem.director}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl className={classes.formControl}>
+                  <InputLabel
+                    variant="filled"
+                    htmlFor="title-mutiple-name-label"
+                  >
+                    Title
+                  </InputLabel>
+                  <Select
+                    value={state.title}
+                    onChange={handleChange}
+                    inputProps={{
+                      name: "title",
+                      id: "title-native-simple",
+                    }}
+                  >
+                    {data?.map((elem, index) => (
+                      <MenuItem key={index} value={elem.title}>
+                        {elem.title}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl className={classes.formControl}>
+                  <InputLabel
+                    variant="filled"
+                    htmlFor="title-mutiple-name-label"
+                  >
+                    Title
+                  </InputLabel>
+                  <Select
+                    value={state.title}
+                    onChange={() => null}
+                    inputProps={{
+                      name: "title",
+                      id: "title-native-simple",
+                    }}
+                  >
+                    {data?.map((elem, index) => (
+                      <MenuItem key={index} value={elem.title}>
+                        {elem.title}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardActions className={classes.controls}>
+            <Button
+              type="submit"
+              className={classes.button}
+              size="large"
+              variant="contained"
+              // onClick={() => {
+              //   mutation.mutate({});
+              // }}
             >
-              <FormControl className={classes.formControl}>
-                <InputLabel
-                  variant="filled"
-                  color="secondary"
-                  htmlFor="release_date-native-simple"
-                >
-                  Release Date
-                </InputLabel>
-                <Select
-                  value={state.release_date}
-                  onChange={handleChange}
-                  inputProps={{
-                    name: "release_date",
-                    id: "release_date-native-simple",
-                  }}
-                >
-                  {data?.map((elem, index) => (
-                    <MenuItem key={index} value={elem.release_date}>
-                      {elem.release_date}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={3}
-              className={classes.gridFormControl}
-            >
-              <FormControl className={classes.formControl}>
-                <InputLabel variant="filled" htmlFor="director-native-simple">
-                  Director
-                </InputLabel>
-                <Select
-                  value={state.director}
-                  onChange={handleChange}
-                  inputProps={{
-                    name: "director",
-                    id: "director-native-simple",
-                  }}
-                >
-                  {data?.map((elem, index) => (
-                    <MenuItem key={index} value={elem.director}>
-                      {elem.director}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={3}
-              className={classes.gridFormControl}
-            >
-              <FormControl className={classes.formControl}>
-                <InputLabel variant="filled" htmlFor="title-mutiple-name-label">
-                  Title
-                </InputLabel>
-                <Select
-                  value={state.title}
-                  onChange={handleChange}
-                  inputProps={{
-                    name: "title",
-                    id: "title-native-simple",
-                  }}
-                >
-                  {data?.map((elem, index) => (
-                    <MenuItem key={index} value={elem.title}>
-                      {elem.title}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={3}
-              className={classes.gridFormControl}
-            >
-              <FormControl className={classes.formControl}>
-                <InputLabel variant="filled" htmlFor="title-mutiple-name-label">
-                  Title
-                </InputLabel>
-                <Select
-                  value={state.title}
-                  onChange={handleChange}
-                  inputProps={{
-                    name: "title",
-                    id: "title-native-simple",
-                  }}
-                >
-                  {data?.map((elem, index) => (
-                    <MenuItem key={index} value={elem.title}>
-                      {elem.title}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} className={classes.gridButtonSubmit}>
-              <Button
-                className={classes.formControlButton}
-                component={Link}
-                to="/form"
-                size="large"
-                variant="contained"
-              >
-                Submit
-              </Button>
-            </Grid>
-          </Grid>
+              Add Doggo
+            </Button>
+          </CardActions>
         </form>
-      </Paper>
+      </Card>
     </>
   );
 };

@@ -2,10 +2,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
   root: {
-    height: 400,
-    maxWidth: "90%",
+    maxWidth: "60%",
     margin: "0 auto",
+    borderRadius: 20,
   },
+
   title: {
     fontSize: 14,
   },
@@ -22,5 +23,7 @@ export const useStyles = makeStyles({
   media: {
     height: 140,
   },
-  content: {},
+  content: {
+    overFlow: "scroll",
+  },
 });

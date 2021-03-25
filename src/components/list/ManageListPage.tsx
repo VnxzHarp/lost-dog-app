@@ -14,33 +14,40 @@ import {
   Button,
 } from "@material-ui/core";
 //types
-import { DataItemType } from "./ListPage";
+import { DogsItemType } from "./ListPage";
 
 type Props = {
-  data: DataItemType[] | undefined;
+  data: DogsItemType[] | undefined;
 };
 type UseStateType = {
-  director: string;
-  release_date: string;
-  title: string;
+  id?: string;
+  name?: string;
+  breed: string;
+  size: string;
+  color: string;
+  location?: string;
+  photo?: string;
+  status: string;
+  description?: string;
 };
 
 const initialFilter: UseStateType = {
-  director: "",
-  title: "",
-  release_date: "",
+  breed: "",
+  size: "",
+  color: "",
+  status: "",
 };
 
 const ManageList: React.FC<Props> = ({ data }) => {
   const classes = useStyles();
   const [state, setState] = useState<UseStateType>(initialFilter);
-  console.log(state);
 
-  const filteredData: DataItemType[] | undefined = data?.filter(
+  const filteredData: DogsItemType[] | undefined = data?.filter(
     (p) =>
-      (p.director === state.director || state.director === "") &&
-      (p.title === state.title || state.title === "") &&
-      (p.release_date === state.release_date || state.release_date === "")
+      (p.status === state.status || state.status === "") &&
+      (p.breed === state.breed || state.breed === "") &&
+      (p.size === state.size || state.size === "") &&
+      (p.color === state.color || state.color === "")
   );
 
   const handleChange = (
@@ -91,59 +98,78 @@ const ManageList: React.FC<Props> = ({ data }) => {
             <InputLabel
               variant="filled"
               color="secondary"
-              htmlFor="release_date-native-simple"
+              htmlFor="color-native-simple"
             >
-              Release Date
+              Color
             </InputLabel>
             <Select
-              value={state.release_date}
+              value={state.color}
               onChange={handleChange}
               inputProps={{
-                name: "release_date",
-                id: "release_date-native-simple",
+                name: "color",
+                id: "color-native-simple",
               }}
             >
               {data?.map((elem, index) => (
-                <MenuItem key={index} value={elem.release_date}>
-                  {elem.release_date}
+                <MenuItem key={index} value={elem.color}>
+                  {elem.color}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <InputLabel variant="filled" htmlFor="director-native-simple">
-              Director
+            <InputLabel variant="filled" htmlFor="breed-native-simple">
+              Breed
             </InputLabel>
             <Select
-              value={state.director}
+              value={state.breed}
               onChange={handleChange}
               inputProps={{
-                name: "director",
-                id: "director-native-simple",
+                name: "breed",
+                id: "breed-native-simple",
               }}
             >
               {data?.map((elem, index) => (
-                <MenuItem key={index} value={elem.director}>
-                  {elem.director}
+                <MenuItem key={index} value={elem.breed}>
+                  {elem.breed}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <InputLabel variant="filled" htmlFor="title-mutiple-name-label">
-              Title
+            <InputLabel variant="filled" htmlFor="size-native-simple">
+              Size
             </InputLabel>
             <Select
-              value={state.title}
+              value={state.size}
               onChange={handleChange}
               inputProps={{
-                name: "title",
-                id: "title-native-simple",
+                name: "size",
+                id: "size-native-simple",
               }}
             >
               {data?.map((elem, index) => (
-                <MenuItem key={index} value={elem.title}>
-                  {elem.title}
+                <MenuItem key={index} value={elem.size}>
+                  {elem.size}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <InputLabel variant="filled" htmlFor="status-native-simple">
+              Status
+            </InputLabel>
+            <Select
+              value={state.status}
+              onChange={handleChange}
+              inputProps={{
+                name: "status",
+                id: "status-native-simple",
+              }}
+            >
+              {data?.map((elem, index) => (
+                <MenuItem key={index} value={elem.status}>
+                  {elem.status}
                 </MenuItem>
               ))}
             </Select>
