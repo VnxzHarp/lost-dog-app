@@ -11,7 +11,12 @@ type Props = {
   label: string;
   num: number;
   value?: number | string;
-  onChange: any;
+  onChange: (
+    event: React.ChangeEvent<{
+      name?: string | undefined;
+      value: unknown;
+    }>
+  ) => void;
 };
 
 const SelectInput: React.FC<Props> = ({
