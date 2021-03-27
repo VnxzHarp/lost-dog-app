@@ -17,7 +17,7 @@ import {
 import { useStyles } from "./FormPage.styles";
 
 type UseStateType = {
-  id?: string | undefined | null | number;
+  id?: string | number;
   name?: string;
   breed: string;
   size: string;
@@ -26,7 +26,6 @@ type UseStateType = {
   photo?: string;
   status: string;
   description?: string;
-  index?: string | number;
 };
 type dogFilterType = {
   name: string;
@@ -56,7 +55,7 @@ const initialFilter = {
   id: "",
 };
 
-const FormPage: React.FC<dogFilterType[]> = () => {
+const FormPage: React.FC = () => {
   const classes = useStyles();
   const [state, setState] = useState<UseStateType>(initialFilter);
   console.log(state);
@@ -132,10 +131,7 @@ const FormPage: React.FC<dogFilterType[]> = () => {
                       label={label}
                       num={num}
                       onChange={handleChange}
-                      // value={state[name]}
-                      // onChange={(e: React.ChangeEvent<{ value: unknown }>) =>
-                      //   setState({ ...state, [name]: e.target.value } as string)
-                      // }
+                      state={state}
                     />
                   </FormControl>
                 ))}
@@ -162,38 +158,3 @@ const FormPage: React.FC<dogFilterType[]> = () => {
 };
 
 export default FormPage;
-
-// <CardContent className={classes.content}>
-// <Grid container spacing={3}>
-//   <Grid container justify="space-around" alignItems="center">
-//     {dogFilters.map(
-//       ({ name, label, defaultOption, num }, index) => (
-//         <FormControl key={index} className={classes.formControl}>
-//           <InputLabel
-//             variant="filled"
-//             htmlFor={`${name}-mutiple-name-label`}
-//           >
-//             {label}
-//           </InputLabel>
-//           <Select
-//             value={"defaultOption"}
-//             onChange={() => null}
-//             inputProps={{
-//               name: { name },
-//               id: `${name}-mutiple-name-label`,
-//             }}
-//           >
-//             {options[num].map((elem, index) => {
-//               return (
-//                 <MenuItem key={index} value={elem}>
-//                   {elem}
-//                 </MenuItem>
-//               );
-//             })}
-//           </Select>
-//         </FormControl>
-//       )
-//     )}
-//   </Grid>
-// </Grid>
-// </CardContent>

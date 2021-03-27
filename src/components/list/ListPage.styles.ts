@@ -24,4 +24,7 @@ export const useStyles = makeStyles({
     height: 48,
     padding: "0 30px",
   },
+  gridContainer: {
+    marginTop: 5,
+  },
 });

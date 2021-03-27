@@ -21,7 +21,7 @@ import {
 
 type TParams = { id: string };
 type DogsItemType = {
-  id: string | number;
+  id: number | string;
   name: string;
   breed: string;
   size: string;
@@ -30,50 +30,48 @@ type DogsItemType = {
   photo: string;
   status: string;
   description: string;
+  [key: string]: string | number;
 };
 
-// const getData = async (): Promise<DogsItemType[]> =>
-//   await (await fetch(`https://ghibliapi.herokuapp.com/films/`)).json();
+const itemsDetailElements: string[] = ["location", "breed", "size", "color"];
 
 const ItemsDetail = ({ match }: RouteComponentProps<TParams>) => {
   const classes = useStyles();
-  const tula = parseInt(match.params.id);
 
   const { data, isLoading, error } = useQuery<DogsItemType[]>("data", getData);
   console.log(data);
-  console.log(typeof tula);
+
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong </div>;
   return (
     <Card className={classes.root}>
       {data
-        ?.filter((item) => item.id === tula)
+        ?.filter((item: any) => item.id === parseInt(match.params.id))
         .map((item, index) => (
-          <CardActionArea key={index}>
-            <CardMedia
-              // className={classes.media}
-              component="img"
-              src={lostDoge}
-              title={"lostDoge"}
-            />
+          <React.Fragment key={index}>
+            <CardActionArea>
+              <CardMedia
+                className={classes.media}
+                component="img"
+                src={lostDoge}
+                title={"lostDoge"}
+              />
+            </CardActionArea>
             <CardContent>
-              <Typography color="textPrimary" variant="h5" component="h2">
-                Location: {item.location}
-              </Typography>
-              <Typography variant="h5" component="h2">
-                Breed: {item.breed}
-              </Typography>
-              <Typography variant="h5" component="h2">
-                Size: {item.size}
-              </Typography>
+              {itemsDetailElements.map((elem: string, index) => (
+                <Typography key={index} variant="h5" component="h2">
+                  {`${elem[0].toUpperCase() + elem.substring(1)}`}: {item[elem]}
+                </Typography>
+              ))}
               <Typography color="textPrimary" component="p">
                 Description: {item.description}
               </Typography>
             </CardContent>
-          </CardActionArea>
+          </React.Fragment>
         ))}
-      <CardActions>
+      <CardActions className={classes.cardButtons}>
         <Button
+          className={classes.buttons}
           size="medium"
           variant="contained"
           color="secondary"

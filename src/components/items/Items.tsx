@@ -37,9 +37,6 @@ const Items: React.FC<Props> = (
         <Typography variant="h5" component="h2">
           Breed: {item.breed}
         </Typography>
-        <Typography variant="h5" component="h2">
-          Size: {item.size}
-        </Typography>
         <Typography
           className={classes.descript}
           color="textPrimary"
@@ -49,8 +46,9 @@ const Items: React.FC<Props> = (
         </Typography>
       </CardContent>
 
-      <CardActions>
+      <CardActions className={classes.cardButtons}>
         <Button
+          className={classes.buttons}
           size="medium"
           variant="contained"
           color="secondary"

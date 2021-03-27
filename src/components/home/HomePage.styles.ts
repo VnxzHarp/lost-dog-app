@@ -11,11 +11,11 @@ export const useStyles = makeStyles({
   cover: {
     width: "100%",
   },
-  controls: {
+  cardButtons: {
     display: "flex",
     justifyContent: "space-around",
   },
-  linkButtons: {
+  buttons: {
     background: "linear-gradient(45deg, #FE6BBB 30%, #FF8E53 90%)",
     border: 0,
     borderRadius: 15,

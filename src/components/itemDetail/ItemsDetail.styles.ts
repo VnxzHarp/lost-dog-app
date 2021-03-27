@@ -21,9 +21,19 @@ export const useStyles = makeStyles({
     display: "-webkit-box",
   },
   media: {
-    height: 140,
+    maxHeight: 360,
   },
   content: {
     overFlow: "scroll",
+  },
+  cardButtons: {
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  buttons: {
+    border: 0,
+    borderRadius: 15,
+    height: 48,
+    padding: "0 30px",
   },
 });

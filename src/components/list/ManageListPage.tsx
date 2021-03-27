@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useStyles } from "./ListPage.styles";
 //components
 import Items from "../items/Items";
+import SelectInput from "../common/SelectInput";
 import {
   Grid,
   FormControl,
@@ -12,6 +13,7 @@ import {
   Select,
   MenuItem,
   Button,
+  Box,
 } from "@material-ui/core";
 //types
 import { DogsItemType } from "./ListPage";
@@ -30,6 +32,12 @@ type UseStateType = {
   status: string;
   description?: string;
 };
+type dogFilterType = {
+  name: string;
+  label: string;
+  num: number;
+  value?: string | number;
+};
 
 const initialFilter: UseStateType = {
   breed: "",
@@ -38,10 +46,21 @@ const initialFilter: UseStateType = {
   status: "",
 };
 
+const dogFilters: dogFilterType[] = [
+  {
+    name: "status",
+    label: "Status",
+    num: 0,
+  },
+  { name: "size", label: "Size", num: 1 },
+  { name: "color", label: "Color", num: 2 },
+  { name: "breed", label: "Breed", num: 3 },
+];
+
 const ManageList: React.FC<Props> = ({ data }) => {
   const classes = useStyles();
   const [state, setState] = useState<UseStateType>(initialFilter);
-
+  console.log(initialFilter);
   const filteredData: DogsItemType[] | undefined = data?.filter(
     (p) =>
       (p.status === state.status || state.status === "") &&
@@ -65,115 +84,19 @@ const ManageList: React.FC<Props> = ({ data }) => {
   };
   return (
     <>
-      {/* {itemFilters.map(({ dataName, label }, index) => (
-        <FormControl key={index} className={classes.formControl}>
-          <InputLabel variant="filled" color="secondary" htmlFor={label}>
-            {" "}
-            {dataName}{" "}
-          </InputLabel>
-          <Select
-            value={state.director}
-            onChange={handleChange}
-            inputProps={{
-              name: { dataName },
-              label: { label },
-            }}
-          >
-            {data?.map((elem, index) => (
-              <MenuItem key={index} value={elem.director}>
-                {elem.director}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      ))} */}
-      <Grid container spacing={3}>
-        <Grid
-          container
-          justify="space-around"
-          alignItems="center"
-          className={classes.inputContainer}
-        >
-          <FormControl className={classes.formControl}>
-            <InputLabel
-              variant="filled"
-              color="secondary"
-              htmlFor="color-native-simple"
-            >
-              Color
-            </InputLabel>
-            <Select
-              value={state.color}
-              onChange={handleChange}
-              inputProps={{
-                name: "color",
-                id: "color-native-simple",
-              }}
-            >
-              {data?.map((elem, index) => (
-                <MenuItem key={index} value={elem.color}>
-                  {elem.color}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel variant="filled" htmlFor="breed-native-simple">
-              Breed
-            </InputLabel>
-            <Select
-              value={state.breed}
-              onChange={handleChange}
-              inputProps={{
-                name: "breed",
-                id: "breed-native-simple",
-              }}
-            >
-              {data?.map((elem, index) => (
-                <MenuItem key={index} value={elem.breed}>
-                  {elem.breed}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel variant="filled" htmlFor="size-native-simple">
-              Size
-            </InputLabel>
-            <Select
-              value={state.size}
-              onChange={handleChange}
-              inputProps={{
-                name: "size",
-                id: "size-native-simple",
-              }}
-            >
-              {data?.map((elem, index) => (
-                <MenuItem key={index} value={elem.size}>
-                  {elem.size}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel variant="filled" htmlFor="status-native-simple">
-              Status
-            </InputLabel>
-            <Select
-              value={state.status}
-              onChange={handleChange}
-              inputProps={{
-                name: "status",
-                id: "status-native-simple",
-              }}
-            >
-              {data?.map((elem, index) => (
-                <MenuItem key={index} value={elem.status}>
-                  {elem.status}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+      <Grid container spacing={3} className={classes.gridContainer}>
+        <Grid container justify="space-around" alignItems="center">
+          {dogFilters.map(({ name, label, num }, index) => (
+            <FormControl key={index} className={classes.formControl}>
+              <SelectInput
+                name={name}
+                label={label}
+                num={num}
+                onChange={handleChange}
+                state={state}
+              />
+            </FormControl>
+          ))}
           <Button
             className={classes.formControlButton}
             onClick={handleReset}

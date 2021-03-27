@@ -80,9 +80,9 @@ const HomePage = () => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions className={classes.controls}>
+      <CardActions className={classes.cardButtons}>
         <Button
-          className={classes.linkButtons}
+          className={classes.buttons}
           component={Link}
           to="/form"
           size="large"

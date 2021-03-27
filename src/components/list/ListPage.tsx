@@ -49,21 +49,6 @@ const ListPage: React.FC = () => {
 
   return (
     <>
-      {/* <div>
-        {" "}
-        {data?.map((elem) => (
-          <div>
-            <div>{elem.name}</div>
-            <div>{elem.location}</div>
-            <div>{elem.status}</div>
-            <div>{elem.breed}</div>
-            <div>Aca no paso nada la reptasd</div>
-            <Button size="small" component={Link} to={`/list/${elem.id}`}>
-              VIEW
-            </Button>
-          </div>
-        ))}
-      </div> */}
       <ManageList data={data} />
     </>
   );

@@ -6,6 +6,18 @@ import { useStyles } from "./SelectInput.styles";
 import { options } from "../utils/ListOptions";
 import { InputLabel, Select, MenuItem } from "@material-ui/core";
 
+type State = {
+  id?: string | number | undefined;
+  name?: string;
+  breed: string;
+  size: string;
+  color: string;
+  location?: string;
+  photo?: string;
+  status: string;
+  description?: string;
+  [key: string]: any;
+};
 type Props = {
   name: string;
   label: string;
@@ -17,13 +29,14 @@ type Props = {
       value: unknown;
     }>
   ) => void;
+  state?: State | undefined;
 };
 
 const SelectInput: React.FC<Props> = ({
   name,
   label,
   num,
-  value,
+  state,
   onChange,
 }) => {
   return (
@@ -33,7 +46,7 @@ const SelectInput: React.FC<Props> = ({
       </InputLabel>
       <Select
         required
-        value={value || ""}
+        value={state![name]}
         onChange={onChange}
         inputProps={{
           name: name,
