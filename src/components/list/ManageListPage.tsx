@@ -20,7 +20,7 @@ type Props = {
   data: DogsItemType[] | undefined;
 };
 type UseStateType = {
-  id?: string;
+  id?: string | number;
   name?: string;
   breed: string;
   size: string;

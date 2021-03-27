@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 //components
 import Button from "@material-ui/core/Button";
-import { Wrapper } from "./AboutPage.styles";
 
 const AboutPage = () => (
   <div>

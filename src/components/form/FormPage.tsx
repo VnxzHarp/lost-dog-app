@@ -1,79 +1,68 @@
 import React, { useState } from "react";
-import { useQuery, useMutation } from "react-query";
-import { Link } from "react-router-dom";
-//styles
-import { useStyles } from "./FormPage.styles";
+//components
+import SelectInput from "../common/SelectInput";
 import AngryDoge from "../../AngryDoge.png";
-import { options } from "../utils/ListOptions";
-
 import {
-  Box,
   Grid,
   FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Button,
   Card,
   CardActionArea,
   CardMedia,
-  LinearProgress,
   TextField,
-  Paper,
   CardContent,
   CardActions,
 } from "@material-ui/core";
+//styles
+import { useStyles } from "./FormPage.styles";
 
 type UseStateType = {
-  color: string;
-  breed: string;
-  size: string;
-  status: string;
+  id?: string | undefined | null | number;
   name?: string;
-  description?: string;
-  options?: string | number;
-  num: number | null;
-};
-type DataItemType = {
-  id?: string | undefined;
-  title: string;
-  name?: string;
-  director: string;
-  release_date: string;
-  status?: string;
   breed: string;
   size: string;
   color: string;
   location?: string;
   photo?: string;
+  status: string;
   description?: string;
-  option?: string[];
+  index?: string | number;
 };
-// const getData = async (): Promise<DataItemType[]> =>
-//   await (await fetch("https://ghibliapi.herokuapp.com/films")).json();
+type dogFilterType = {
+  name: string;
+  label: string;
+  num: number;
+  value?: string | number;
+};
 
-// const addData = async (newData): Promise<DataItemType> =>
-//   await (await fetch("https://ghibliapi.herokuapp.com/films", newData))
-const dogFilters = [
+const dogFilters: dogFilterType[] = [
   {
     name: "status",
     label: "Status",
-    defaultOption: "Filter by Status",
     num: 0,
   },
-  { name: "size", label: "Size", defaultOption: "Filter by Size", num: 1 },
-  { name: "color", label: "Color", defaultOption: "Filter by Color", num: 2 },
-  { name: "breed", label: "Breed", defaultOption: "Filter by Breed", num: 3 },
+  { name: "size", label: "Size", num: 1 },
+  { name: "color", label: "Color", num: 2 },
+  { name: "breed", label: "Breed", num: 3 },
 ];
-const initialFilter = { color: "", breed: "", size: "", status: "", num: null };
+const initialFilter = {
+  color: "",
+  breed: "",
+  size: "",
+  status: "",
+  description: "",
+  location: "",
+  photo: "",
+  id: "",
+};
 
-const FormPage: React.FC = () => {
+const FormPage: React.FC<dogFilterType[]> = () => {
   const classes = useStyles();
   const [state, setState] = useState<UseStateType>(initialFilter);
+  console.log(state);
   // const mutation = useMutation(() => {
   //   return fetch("/api", state);
   // });
-  console.log(options[1]);
   // const { data, isLoading, error } = useQuery<DataItemType[]>("data", getData);
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: unknown }>
@@ -132,37 +121,24 @@ const FormPage: React.FC = () => {
               />
             </Grid>
           </CardContent>
+
           <CardContent className={classes.content}>
             <Grid container spacing={3}>
               <Grid container justify="space-around" alignItems="center">
-                {dogFilters.map(
-                  ({ name, label, defaultOption, num }, index) => (
-                    <FormControl key={index} className={classes.formControl}>
-                      <InputLabel
-                        variant="filled"
-                        htmlFor={`${name}-mutiple-name-label`}
-                      >
-                        {label}
-                      </InputLabel>
-                      <Select
-                        value={"defaultOption"}
-                        onChange={() => null}
-                        inputProps={{
-                          name: { name },
-                          id: `${name}-mutiple-name-label`,
-                        }}
-                      >
-                        {options[num].map((elem, index) => {
-                          return (
-                            <option key={index} value={elem}>
-                              {elem}
-                            </option>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  )
-                )}
+                {dogFilters.map(({ name, label, num }, index) => (
+                  <FormControl key={index} className={classes.formControl}>
+                    <SelectInput
+                      name={name}
+                      label={label}
+                      num={num}
+                      onChange={handleChange}
+                      // value={state[name]}
+                      // onChange={(e: React.ChangeEvent<{ value: unknown }>) =>
+                      //   setState({ ...state, [name]: e.target.value } as string)
+                      // }
+                    />
+                  </FormControl>
+                ))}
               </Grid>
             </Grid>
           </CardContent>
@@ -187,10 +163,37 @@ const FormPage: React.FC = () => {
 
 export default FormPage;
 
-// {options[index].map((elem, index) => {
-//   return (
-//     <option key={index} value={elem}>
-//       {elem}
-//     </option>
-//   );
-// })}
+// <CardContent className={classes.content}>
+// <Grid container spacing={3}>
+//   <Grid container justify="space-around" alignItems="center">
+//     {dogFilters.map(
+//       ({ name, label, defaultOption, num }, index) => (
+//         <FormControl key={index} className={classes.formControl}>
+//           <InputLabel
+//             variant="filled"
+//             htmlFor={`${name}-mutiple-name-label`}
+//           >
+//             {label}
+//           </InputLabel>
+//           <Select
+//             value={"defaultOption"}
+//             onChange={() => null}
+//             inputProps={{
+//               name: { name },
+//               id: `${name}-mutiple-name-label`,
+//             }}
+//           >
+//             {options[num].map((elem, index) => {
+//               return (
+//                 <MenuItem key={index} value={elem}>
+//                   {elem}
+//                 </MenuItem>
+//               );
+//             })}
+//           </Select>
+//         </FormControl>
+//       )
+//     )}
+//   </Grid>
+// </Grid>
+// </CardContent>
