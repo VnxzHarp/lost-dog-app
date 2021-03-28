@@ -10,7 +10,13 @@ export const useStyles = makeStyles({
     backgroundColor: "#4cc9f0",
     borderRadius: 5,
   },
-  cover: {},
+  menuItem: {
+    color: "white",
+  },
+  select: {
+    color: "white",
+    textAlign: "right",
+  },
   formControl: {
     minWidth: 120,
     maxWidth: 300,

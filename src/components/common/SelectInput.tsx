@@ -39,12 +39,14 @@ const SelectInput: React.FC<Props> = ({
   state,
   onChange,
 }) => {
+  const classes = useStyles();
   return (
     <>
       <InputLabel variant="filled" htmlFor={`${name}-mutiple-name-label`}>
         {label}
       </InputLabel>
       <Select
+        className={classes.select}
         required
         value={state![name]}
         onChange={onChange}

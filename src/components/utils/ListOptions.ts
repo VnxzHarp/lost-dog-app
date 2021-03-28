@@ -9,7 +9,7 @@ const breed = [
   "tulon",
   "kuki",
 ];
-export const color = [
+const color = [
   "black",
   "red",
   "white",
@@ -22,5 +22,19 @@ export const color = [
   "chaufa",
   "albino",
 ];
+const location = [
+  "Cono Surf",
+  "New City",
+  "Cercadinho",
 
-export const options = [[...status], [...size], [...color], [...breed]];
+  "Tulita York",
+  "cercado",
+];
+
+export const options = [
+  [...status],
+  [...size],
+  [...color],
+  [...breed],
+  [...location],
+];

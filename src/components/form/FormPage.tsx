@@ -43,8 +43,10 @@ const dogFilters: dogFilterType[] = [
   { name: "size", label: "Size", num: 1 },
   { name: "color", label: "Color", num: 2 },
   { name: "breed", label: "Breed", num: 3 },
+  { name: "location", label: "Location", num: 4 },
 ];
 const initialFilter = {
+  name: "",
   color: "",
   breed: "",
   size: "",
@@ -64,7 +66,10 @@ const FormPage: React.FC = () => {
   // });
   // const { data, isLoading, error } = useQuery<DataItemType[]>("data", getData);
   const handleChange = (
-    event: React.ChangeEvent<{ name?: string; value: unknown }>
+    event: React.ChangeEvent<{
+      name?: string;
+      value: unknown | HTMLInputElement;
+    }>
   ) => {
     const name = event.target.name as keyof typeof state;
     setState({
@@ -96,6 +101,10 @@ const FormPage: React.FC = () => {
                 label="Name"
                 fullWidth
                 margin="normal"
+                name="name"
+                placeholder="Optional"
+                onChange={handleChange}
+                value={state["name"]}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -112,6 +121,10 @@ const FormPage: React.FC = () => {
                 label="Description"
                 fullWidth
                 margin="normal"
+                name="description"
+                placeholder="Optional"
+                onChange={handleChange}
+                value={state["description"]}
                 InputLabelProps={{
                   shrink: true,
                 }}

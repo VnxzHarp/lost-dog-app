@@ -16,8 +16,8 @@ export const useStyles = makeStyles({
     maxWidth: 300,
     background: "#f72585",
     borderRadius: 5,
-    color: "#3a0ca3",
     marginBottom: 5,
+    color: "white",
   },
   content: {
     marginBottom: 15,

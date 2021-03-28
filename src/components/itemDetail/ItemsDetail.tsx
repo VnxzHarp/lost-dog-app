@@ -33,7 +33,13 @@ type DogsItemType = {
   [key: string]: string | number;
 };
 
-const itemsDetailElements: string[] = ["location", "breed", "size", "color"];
+const itemsDetailElements: string[] = [
+  "location",
+  "breed",
+  "size",
+  "color",
+  "name",
+];
 
 const ItemsDetail = ({ match }: RouteComponentProps<TParams>) => {
   const classes = useStyles();
@@ -58,11 +64,16 @@ const ItemsDetail = ({ match }: RouteComponentProps<TParams>) => {
               />
             </CardActionArea>
             <CardContent>
-              {itemsDetailElements.map((elem: string, index) => (
-                <Typography key={index} variant="h5" component="h2">
-                  {`${elem[0].toUpperCase() + elem.substring(1)}`}: {item[elem]}
-                </Typography>
-              ))}
+              {itemsDetailElements.map((elem: string, index) => {
+                return (
+                  item[elem] && (
+                    <Typography key={index} variant="h5" component="h2">
+                      {`${elem[0].toUpperCase() + elem.substring(1)}`}:{" "}
+                      {item[elem]}
+                    </Typography>
+                  )
+                );
+              })}
               <Typography color="textPrimary" component="p">
                 Description: {item.description}
               </Typography>
