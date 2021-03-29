@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useQuery, useMutation } from "react-query";
+import axios from "axios";
 //components
 import SelectInput from "../common/SelectInput";
 import AngryDoge from "../../AngryDoge.png";
@@ -61,8 +63,8 @@ const FormPage: React.FC = () => {
   const classes = useStyles();
   const [state, setState] = useState<UseStateType>(initialFilter);
   console.log(state);
-  // const mutation = useMutation(() => {
-  //   return fetch("/api", state);
+  // const mutation = useMutation<any>((props: any): any => {
+  //   axios.post("/api", props);
   // });
   // const { data, isLoading, error } = useQuery<DataItemType[]>("data", getData);
   const handleChange = (
@@ -76,6 +78,19 @@ const FormPage: React.FC = () => {
       ...state,
       [name]: event.target.value,
     });
+  };
+
+  const sendPostRequest = async (newPost: UseStateType) => {
+    try {
+      const { data } = await axios.post(
+        "https://e160a083-2c3b-4407-84f2-faf3625b2cd9.mock.pstmn.io/dogodatabase/2/dogList",
+        newPost
+      );
+      console.log(data);
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+    }
   };
   // if (isLoading) return <LinearProgress />;
   // if (error) return <div>Something went wrong </div>;
@@ -157,9 +172,10 @@ const FormPage: React.FC = () => {
               className={classes.button}
               size="large"
               variant="contained"
-              // onClick={() => {
-              //   mutation.mutate({});
-              // }}
+              onClick={
+                () => sendPostRequest(state)
+                // mutation.mutate({ state });
+              }
             >
               Add Doggo
             </Button>

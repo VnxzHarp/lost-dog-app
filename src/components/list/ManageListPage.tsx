@@ -6,15 +6,7 @@ import { useStyles } from "./ListPage.styles";
 //components
 import Items from "../items/Items";
 import SelectInput from "../common/SelectInput";
-import {
-  Grid,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Button,
-  Box,
-} from "@material-ui/core";
+import { Grid, FormControl, Button } from "@material-ui/core";
 //types
 import { DogsItemType } from "./ListPage";
 
