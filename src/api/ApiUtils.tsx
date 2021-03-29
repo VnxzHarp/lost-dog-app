@@ -8,6 +8,15 @@ export const getData = async () => {
   return data;
 };
 
+export const postData = async (props) => {
+  const { data } = await axios.post(baseUrl, {
+    headers: {
+      authorization: "Bearer YOUR_JWT_TOKEN_HERE",
+    },
+  });
+  return data;
+};
+
 // export const GetPostList = async () => {
 //   const {data} = await axios.get("https://ghibliapi.herokuapp.com/films")
 //   return data
