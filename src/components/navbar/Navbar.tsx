@@ -60,6 +60,16 @@ const Navbar = () => {
               variant="contained"
             >
               List
+               </Button>
+            <Button
+              className={classes.navButtons}
+              component={Link}
+              to="/about"
+              size="medium"
+              variant="contained"
+              color="primary"
+            >
+              About
             </Button>
             <Button
               className={classes.navButtons}

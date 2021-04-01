@@ -8,7 +8,7 @@ export const getData = async () => {
   return data;
 };
 
-export const postData = async (props) => {
+export const postData = async () => {
   const { data } = await axios.post(baseUrl, {
     headers: {
       authorization: "Bearer YOUR_JWT_TOKEN_HERE",
