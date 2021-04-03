@@ -1,6 +1,8 @@
 import React from "react";
 //components
-
+import * as Yup from "yup";
+import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
+import AngryDoge from "../../AngryDoge.png";
 import { options } from "../utils/ListOptions";
 import {
   TextField,
@@ -11,6 +13,15 @@ import {
   FormControlLabel,
   Select,
   MenuItem,
+  FormControl,
+  InputLabel,
+  IconButton,
+  CardContent,
+  Grid,
+  Card,
+  CardActions,
+  CardActionArea,
+  CardMedia,
 } from "@material-ui/core";
 import {
   Formik,
@@ -22,6 +33,9 @@ import {
   validateYupSchema,
 } from "formik";
 import { MyField } from "./MyField";
+import { MyFormControl } from "./MyFormControl";
+//styles
+import { useStyles } from "./MyForm.styles";
 
 // types
 interface Values {
@@ -36,7 +50,6 @@ type dogFilterType = {
   num: number;
   value?: string | number;
 };
-const optionSelectNum = [0, 1, 2, 3, 4];
 const dogFilters: dogFilterType[] = [
   {
     name: "status",
@@ -71,68 +84,141 @@ interface Props {
 }
 
 export const MyForm: React.FC<Props> = ({ onSubmit }) => {
+  const classes = useStyles();
   return (
-    <>
-      <Paper>
-        <Formik
-          initialValues={{
-            name: "",
-            description: "",
-            color: "",
-            breed: "",
-            size: "",
-            status: "",
-            location: "",
-          }}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
-          }}>
-          {({ values, handleSubmit, isSubmitting, handleReset }) => (
-            <Form onSubmit={handleSubmit}>
-              <div>
-                <Field component={MyField} label="name" name="name" />
-              </div>
-              <div>
-                <Field
-                  component={MyField}
-                  label="description"
-                  name="description"
-                />
-              </div>
-              <div>
-                {dogFilters.map(({ name, label, num }) => (
-                  <Field
-                    placeholder={label}
-                    name={name}
-                    type="select"
-                    as={Select}>
-                    {options[num].map((elem, index) => {
-                      return (
-                        <MenuItem key={index} value={elem}>
-                          {elem}
-                        </MenuItem>
-                      );
-                    })}
-                  </Field>
-                ))}
-              </div>
-              <Button
-                disabled={isSubmitting}
-                variant="contained"
-                color="secondary"
-                type="submit">
-                Add Doggo
-              </Button>
-              <Button onClick={handleReset}>Reset</Button>
-              <pre>{JSON.stringify(values, null, 2)}</pre>
-            </Form>
-          )}
-        </Formik>
-      </Paper>
-    </>
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt="DogFinderApp"
+          height="140"
+          src={AngryDoge}
+          title="DogFinderApp"
+        />
+      </CardActionArea>
+      <CardContent>
+        <Grid item xs={12}>
+          <Formik
+            initialValues={{
+              name: "",
+              description: "",
+              color: "",
+              breed: "",
+              size: "",
+              status: "",
+              location: "",
+              photo: "",
+            }}
+            validationSchema={Yup.object({
+              name: Yup.string()
+                .max(15, "Must be 15 characters or less")
+                .required("Required"),
+              description: Yup.string()
+                .max(50, "Must be 50 characters or less")
+                .required("Required"),
+              color: Yup.string().required("Required"),
+            })}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+              }, 400);
+            }}>
+            {({
+              values,
+              handleSubmit,
+              isSubmitting,
+              handleReset,
+              handleChange,
+            }) => (
+              <Form onSubmit={handleSubmit}>
+                <CardContent>
+                  <Grid item xs={12}>
+                    <Field component={MyField} label="name" name="name" />
+                  </Grid>
+                </CardContent>
+                <CardContent>
+                  <Grid item xs={12}>
+                    <Field
+                      component={MyField}
+                      label="description"
+                      name="description"
+                    />
+                  </Grid>
+                </CardContent>
+                <CardContent className={classes.content}>
+                  <Grid container spacing={3}>
+                    <Grid container justify="space-around" alignItems="center">
+                      {dogFilters.map(({ name, label, num }) => (
+                        <div>
+                          <FormControl className={classes.formControl}>
+                            <InputLabel>{label}</InputLabel>
+                            <Field
+                              className={classes.select}
+                              as={Select}
+                              type="select"
+                              name={name}>
+                              {options[num].map((elem, index) => {
+                                return (
+                                  <MenuItem key={index} value={elem}>
+                                    {elem}
+                                  </MenuItem>
+                                );
+                              })}
+                            </Field>
+                          </FormControl>
+                        </div>
+                      ))}
+                    </Grid>
+                  </Grid>
+                </CardContent>
+                <CardContent>
+                  <Grid item xs={12}>
+                    <input
+                      accept="image/*"
+                      id="contained-button-file"
+                      type="file"
+                      name="´photo"
+                      onChange={handleChange("photo")}
+                      className={classes.inputPhoto}
+                    />
+                    <label htmlFor="contained-button-file">
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        component="span"
+                        startIcon={<AddAPhotoIcon />}>
+                        Upload
+                      </Button>
+                    </label>
+                  </Grid>
+                </CardContent>
+                <CardActions className={classes.controls}>
+                  <Button
+                    onClick={handleReset}
+                    variant="contained"
+                    color="primary">
+                    Reset
+                  </Button>
+                </CardActions>
+
+                <CardActions className={classes.controls}>
+                  <Button
+                    className={classes.button}
+                    disabled={isSubmitting}
+                    variant="contained"
+                    color="secondary"
+                    type="submit">
+                    Add Doggo
+                  </Button>
+                </CardActions>
+                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+              </Form>
+            )}
+          </Formik>
+        </Grid>
+      </CardContent>
+    </Card>
   );
 };
 
