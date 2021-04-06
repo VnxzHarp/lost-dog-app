@@ -52,31 +52,6 @@ const HomePage = () => {
             lost doggos aswell. This is app was made to help doggos who are far
             from home, if you see a stray doggo, help us uploading his position
             and taking a photo of him. You can post your lost doggos aswell.
-            This is app was made to help doggos who are far from home, if you
-            see a stray doggo, help us uploading his position and taking a photo
-            of him. You can post your lost doggos aswell. This is app was made
-            to help doggos who are far from home, if you see a stray doggo, help
-            us uploading his position and taking a photo of him. You can post
-            your lost doggos aswell. This is app was made to help doggos who are
-            far from home, if you see a stray doggo, help us uploading his
-            position and taking a photo of him. You can post your lost doggos
-            aswell. This is app was made to help doggos who are far from home,
-            if you see a stray doggo, help us uploading his position and taking
-            a photo of him. You can post your lost doggos aswell. This is app
-            was made to help doggos who are far from home, if you see a stray
-            doggo, help us uploading his position and taking a photo of him. You
-            can post your lost doggos aswell. This is app was made to help
-            doggos who are far from home, if you see a stray doggo, help us
-            uploading his position and taking a photo of him. You can post your
-            lost doggos aswell. This is app was made to help doggos who are far
-            from home, if you see a stray doggo, help us uploading his position
-            and taking a photo of him. You can post your lost doggos aswell.
-            This is app was made to help doggos who are far from home, if you
-            see a stray doggo, help us uploading his position and taking a photo
-            of him. You can post your lost doggos aswell. This is app was made
-            to help doggos who are far from home, if you see a stray doggo, help
-            us uploading his position and taking a photo of him. You can post
-            your lost doggos aswell.
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -87,8 +62,7 @@ const HomePage = () => {
           to="/form"
           size="large"
           color="primary"
-          variant="contained"
-        >
+          variant="contained">
           Report
         </Button>
       </CardActions>

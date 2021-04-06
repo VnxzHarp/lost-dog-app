@@ -5,10 +5,13 @@ import React, { useState } from "react";
 import { useStyles } from "./ListPage.styles";
 //components
 import Items from "../items/Items";
+import { dogFilters } from "../common/DogFilters";
 import SelectInput from "../common/SelectInput";
 import { Grid, FormControl, Button } from "@material-ui/core";
+
 //types
 import { DogsItemType } from "./ListPage";
+import { DisplayFilters } from "./DisplayFilters";
 
 type Props = {
   data: DogsItemType[] | undefined;
@@ -24,12 +27,6 @@ type UseStateType = {
   status: string;
   description?: string;
 };
-type dogFilterType = {
-  name: string;
-  label: string;
-  num: number;
-  value?: string | number;
-};
 
 const initialFilter: UseStateType = {
   breed: "",
@@ -37,17 +34,6 @@ const initialFilter: UseStateType = {
   color: "",
   status: "",
 };
-
-const dogFilters: dogFilterType[] = [
-  {
-    name: "status",
-    label: "Status",
-    num: 0,
-  },
-  { name: "size", label: "Size", num: 1 },
-  { name: "color", label: "Color", num: 2 },
-  { name: "breed", label: "Breed", num: 3 },
-];
 
 const ManageList: React.FC<Props> = ({ data }) => {
   const classes = useStyles();
@@ -93,8 +79,7 @@ const ManageList: React.FC<Props> = ({ data }) => {
             className={classes.formControlButton}
             onClick={handleReset}
             size="medium"
-            variant="contained"
-          >
+            variant="contained">
             Reset
           </Button>
         </Grid>

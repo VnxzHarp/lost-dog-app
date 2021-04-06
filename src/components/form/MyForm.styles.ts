@@ -8,7 +8,8 @@ export const useStyles = makeStyles({
   },
   textField: {
     backgroundColor: "#4cc9f0",
-    borderRadius: 5,
+    borderRadius:5,
+    margin:5
   },
   select: {
     color: "white",
@@ -21,10 +22,10 @@ export const useStyles = makeStyles({
     maxWidth: 300,
     background: "#f72585",
     borderRadius: 5,
-    marginBottom: 5,
+       margin:5
   },
   content: {
-    marginBottom: 15,
+   marginTop:15,
   },
   controls: {
     display: "flex",
