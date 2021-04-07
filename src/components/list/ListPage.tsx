@@ -15,6 +15,7 @@ export type DogsItemType = {
   photo: string;
   status: string;
   description: string;
+  date: string;
 };
 
 const ListPage: React.FC = () => {

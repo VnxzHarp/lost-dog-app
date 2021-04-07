@@ -1,11 +1,10 @@
-import React from "react";
 //components
 import MediaHeader from "../common/MediaHeader";
 import AngryDoge from "../../AngryDoge.png";
 import { MyForm } from "./MyForm";
-import { CardContent, Grid, Card } from "@material-ui/core";
+import { CardContent, Card } from "@material-ui/core";
 //styles
-import { useStyles } from "./MyForm.styles";
+import { useStyles } from "./FormPage.styles";
 
 const AboutPage = () => {
   const classes = useStyles();

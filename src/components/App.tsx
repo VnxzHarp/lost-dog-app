@@ -1,10 +1,7 @@
-import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 //components
 import Navbar from "./navbar/Navbar";
-import ListMenu from "./navbar/ListMenu";
-import Contain from "./navbar/Contain";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { Fab, Toolbar } from "@material-ui/core";
 import ScrollTop from "./utils/ScrollTop";
@@ -24,8 +21,6 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Navbar />
       <Toolbar id="back-to-top-anchor" />
-      <ListMenu />
-      <Contain />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/about" component={AboutPage} />
@@ -34,7 +29,6 @@ const App = () => {
         <Route path="/list/:id" component={ItemsDetail} />
         <Route component={PageNotFound} />
       </Switch>
-
       <ScrollTop>
         <Fab color="secondary" size="medium" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />

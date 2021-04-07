@@ -1,4 +1,3 @@
-import * as React from "react";
 //type
 type dogFilterType = {
   name: string;

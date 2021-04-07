@@ -17,6 +17,7 @@ import {
   CardActions,
   Card,
 } from "@material-ui/core";
+import MediaHeader from "../common/MediaHeader";
 //types
 
 type TParams = { id: string };
@@ -55,14 +56,8 @@ const ItemsDetail = ({ match }: RouteComponentProps<TParams>) => {
         ?.filter((item: any) => item.id === parseInt(match.params.id))
         .map((item, index) => (
           <React.Fragment key={index}>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                component="img"
-                src={lostDoge}
-                title={"lostDoge"}
-              />
-            </CardActionArea>
+            <MediaHeader src={lostDoge} title="lostDoge" alt="lostDoge" />
+
             <CardContent>
               {itemsDetailElements.map((elem: string, index) => {
                 return (
@@ -87,8 +82,7 @@ const ItemsDetail = ({ match }: RouteComponentProps<TParams>) => {
           variant="contained"
           color="secondary"
           component={Link}
-          to={`/list`}
-        >
+          to={`/list`}>
           Back
         </Button>
       </CardActions>

@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
   root: {
-    maxHeight: 400,
+    maxHeight: 500,
     maxWidth: "90%",
     margin: "0 auto",
   },
@@ -26,11 +26,13 @@ export const useStyles = makeStyles({
   cardButtons: {
     display: "flex",
     justifyContent: "space-around",
+   
   },
   buttons: {
     border: 0,
     borderRadius: 15,
     height: 48,
     padding: "0 30px",
+    
   },
 });

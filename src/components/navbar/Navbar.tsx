@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 //components
+import { NavButton } from "../common/NavButton";
 import {
   Typography,
   AppBar,
@@ -38,49 +39,20 @@ const Navbar = () => {
               edge="start"
               className={classes.menuButton}
               color="primary"
-              aria-label="menu"
-            >
+              aria-label="menu">
               <MenuIcon />
             </IconButton>
             <Typography
               component={Link}
               to="/"
-              variant="h6"
+              variant="h4"
               className={classes.title}
-              color="primary"
-            >
+              color="primary">
               DogFinder
             </Typography>
-            <Button
-              className={classes.navButtons}
-              component={Link}
-              to="/list"
-              size="medium"
-              color="primary"
-              variant="contained"
-            >
-              List
-               </Button>
-            <Button
-              className={classes.navButtons}
-              component={Link}
-              to="/about"
-              size="medium"
-              variant="contained"
-              color="primary"
-            >
-              About
-            </Button>
-            <Button
-              className={classes.navButtons}
-              component={Link}
-              to="/"
-              size="medium"
-              variant="contained"
-              color="primary"
-            >
-              Home
-            </Button>
+            <NavButton component={Link} to="/about" text="About" />
+            <NavButton component={Link} to="/list" text="List" />
+            <NavButton component={Link} to="/" text="Home" />
           </Toolbar>
         </AppBar>
       </HideOnScroll>

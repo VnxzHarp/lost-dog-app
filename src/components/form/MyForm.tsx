@@ -2,11 +2,12 @@ import React from "react";
 import * as Yup from "yup";
 import axios from "axios";
 //components
+import { CenteredButton } from "../common/CenteredButton";
 import { options } from "../utils/ListOptions";
 import { dogFilters } from "../common/DogFilters";
 import { Formik, Form, Field } from "formik";
-import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import { sendPostRequest } from "../../api/ApiUtils";
+import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import {
   Button,
   Select,
@@ -30,6 +31,7 @@ export interface Values {
   status: string;
   location: string;
   photo: string;
+  date: string;
 }
 interface Props {
   onSubmit: (values: Values) => void;
@@ -48,6 +50,7 @@ export const MyForm: React.FC<Props> = ({}) => {
         status: "",
         location: "",
         photo: "",
+        date: "",
       }}
       // validationSchema={Yup.object().shape({
       //   name: Yup.string()
@@ -63,6 +66,9 @@ export const MyForm: React.FC<Props> = ({}) => {
           setSubmitting(false);
         }, 400);
         sendPostRequest(values);
+        let time: any = Date.now();
+        // let hora: any = new Date(time);
+        values.date = time.toString();
       }}>
       {({ values, handleSubmit, isSubmitting, handleReset, handleChange }) => (
         <Form onSubmit={handleSubmit}>
@@ -132,16 +138,13 @@ export const MyForm: React.FC<Props> = ({}) => {
                 Reset
               </Button>
             </CardActions>
-            <CardActions className={classes.controls}>
-              <Button
-                className={classes.button}
-                disabled={isSubmitting}
-                variant="contained"
-                color="secondary"
-                type="submit">
-                Add Doggo
-              </Button>
-            </CardActions>
+
+            <CenteredButton
+              text="Add Doggo"
+              disabled={isSubmitting}
+              type="submit"
+              variant="contained"
+            />
           </CardContent>
           <pre>{JSON.stringify(values, null, 2)}</pre>
         </Form>

@@ -26,6 +26,7 @@ type UseStateType = {
   photo?: string;
   status: string;
   description?: string;
+  date?: string;
 };
 
 const initialFilter: UseStateType = {
@@ -38,7 +39,6 @@ const initialFilter: UseStateType = {
 const ManageList: React.FC<Props> = ({ data }) => {
   const classes = useStyles();
   const [state, setState] = useState<UseStateType>(initialFilter);
-  console.log(initialFilter);
   const filteredData: DogsItemType[] | undefined = data?.filter(
     (p) =>
       (p.status === state.status || state.status === "") &&

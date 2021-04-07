@@ -5,7 +5,7 @@ import { CardMedia, CardActionArea } from "@material-ui/core";
 
 interface Props {
   src: string;
-  height: string;
+  height?: string;
   alt: string;
   title: string;
 }

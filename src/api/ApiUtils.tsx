@@ -29,12 +29,3 @@ export const sendPostRequest = async (newPost: Values) => {
     console.error(err);
   }
 };
-// export const GetPostList = async () => {
-//   const {data} = await axios.get("https://ghibliapi.herokuapp.com/films")
-//   return data
-// }
-
-// export const UpdateData = async (data)=> {
-//   const {data} = await axios.post("https://ghibliapi.herokuapp.com/films",data )
-//   return data
-// }

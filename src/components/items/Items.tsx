@@ -12,6 +12,7 @@ import DogeCircle from "../../DogeCircle.jpg";
 import { useStyles } from "./Items.styles";
 //types
 import { DogsItemType } from "../list/ListPage";
+import MediaHeader from "../common/MediaHeader";
 type Props = {
   item: DogsItemType;
   // handleClickMoreInfo: (clickedItem: DataItemType) => void;
@@ -22,14 +23,10 @@ const Items: React.FC<Props> = (
   { match }: RouteComponentProps<TParams>
 ) => {
   const classes = useStyles();
+
   return (
     <Card className={classes.root} variant="outlined">
-      <CardMedia
-        className={classes.media}
-        component="img"
-        src={DogeCircle}
-        title={"dogeCircle"}
-      />
+      <MediaHeader src={DogeCircle} title="dogeCircle" alt="dogeCircle" />
       <CardContent className={classes.content}>
         <Typography color="textPrimary" variant="h5" component="h2">
           Location: {item.location}
@@ -40,9 +37,11 @@ const Items: React.FC<Props> = (
         <Typography
           className={classes.descript}
           color="textPrimary"
-          component="p"
-        >
+          component="p">
           Description: {item.description}
+        </Typography>
+        <Typography color="textPrimary" component="h6">
+          {item.date}
         </Typography>
       </CardContent>
 
@@ -53,8 +52,7 @@ const Items: React.FC<Props> = (
           variant="contained"
           color="secondary"
           component={Link}
-          to={`/list/${item.id}`}
-        >
+          to={`/list/${item.id}`}>
           MORE INFO
         </Button>
       </CardActions>
