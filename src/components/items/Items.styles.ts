@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
   root: {
-    maxHeight: 500,
+    maxHeight: 700,
     maxWidth: "90%",
     margin: "0 auto",
   },
