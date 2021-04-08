@@ -1,16 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 //components
+import { TemporaryDrawer } from "../drawer/MyDrawer";
 import { NavButton } from "../common/NavButton";
-import {
-  Typography,
-  AppBar,
-  IconButton,
-  Button,
-  Toolbar,
-} from "@material-ui/core";
+import { Typography, AppBar, Toolbar } from "@material-ui/core";
 import { useScrollTrigger, Slide } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
 //styles
 import { useStyles } from "./Navbar.styles";
 //types
@@ -35,17 +29,11 @@ const Navbar = () => {
       <HideOnScroll>
         <AppBar>
           <Toolbar className={classes.toolbar}>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="primary"
-              aria-label="menu">
-              <MenuIcon />
-            </IconButton>
+            <TemporaryDrawer />
             <Typography
               component={Link}
               to="/"
-              variant="h4"
+              variant="h5"
               className={classes.title}
               color="primary">
               DogFinder

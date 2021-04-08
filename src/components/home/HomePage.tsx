@@ -2,18 +2,14 @@ import { Link } from "react-router-dom";
 import DogeCoin from "../../DogeCoin.jpg";
 //components
 import { CenteredButton } from "../common/CenteredButton";
-import { Card, CardActions, CardContent } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import { CardContent } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-//styles
-import { useStyles } from "./HomePage.styles";
+import { ResponsiveCardLayout } from "../common/ResponsiveCardLayout";
 import MediaHeader from "../common/MediaHeader";
 
 const HomePage = () => {
-  const classes = useStyles();
-
   return (
-    <Card className={classes.root}>
+    <ResponsiveCardLayout>
       <MediaHeader
         alt="DogFinderApp"
         height="140"
@@ -52,7 +48,7 @@ const HomePage = () => {
         to="/form"
         variant="contained"
       />
-    </Card>
+    </ResponsiveCardLayout>
   );
 };
 

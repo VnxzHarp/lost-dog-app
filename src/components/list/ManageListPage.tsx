@@ -5,13 +5,12 @@ import React, { useState } from "react";
 import { useStyles } from "./ListPage.styles";
 //components
 import Items from "../items/Items";
-import { dogFilters } from "../common/DogFilters";
 import SelectInput from "../common/SelectInput";
+import { dogFilters } from "../common/DogFilters";
+import { DogsItemType } from "./ListPage";
 import { Grid, FormControl, Button } from "@material-ui/core";
 
 //types
-import { DogsItemType } from "./ListPage";
-import { DisplayFilters } from "./DisplayFilters";
 
 type Props = {
   data: DogsItemType[] | undefined;

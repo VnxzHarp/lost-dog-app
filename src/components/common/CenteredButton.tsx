@@ -21,11 +21,13 @@ export const CenteredButton: React.FC<Props> = ({
   component,
   type,
   variant,
+  onClick,
 }) => {
   const classes = useStyles();
   return (
     <CardActions className={classes.cardButton}>
       <Button
+        onClick={onClick}
         className={classes.centerButton}
         component={component}
         to={to}

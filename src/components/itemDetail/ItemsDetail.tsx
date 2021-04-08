@@ -4,18 +4,16 @@ import { useQuery } from "react-query";
 //components
 import lostDoge from "../../lost-doge.jpg";
 import { getData } from "../../api/ApiUtils";
+import { ResponsiveCardLayout } from "../common/ResponsiveCardLayout";
 //styles
 import { useStyles } from "./ItemsDetail.styles";
 
 import {
   LinearProgress,
-  CardMedia,
-  CardActionArea,
   Typography,
   Button,
   CardContent,
   CardActions,
-  Card,
 } from "@material-ui/core";
 import MediaHeader from "../common/MediaHeader";
 //types
@@ -51,13 +49,12 @@ const ItemsDetail = ({ match }: RouteComponentProps<TParams>) => {
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong </div>;
   return (
-    <Card className={classes.root}>
+    <ResponsiveCardLayout>
       {data
         ?.filter((item: any) => item.id === parseInt(match.params.id))
         .map((item, index) => (
           <React.Fragment key={index}>
             <MediaHeader src={lostDoge} title="lostDoge" alt="lostDoge" />
-
             <CardContent>
               {itemsDetailElements.map((elem: string, index) => {
                 return (
@@ -86,7 +83,7 @@ const ItemsDetail = ({ match }: RouteComponentProps<TParams>) => {
           Back
         </Button>
       </CardActions>
-    </Card>
+    </ResponsiveCardLayout>
   );
 };
 

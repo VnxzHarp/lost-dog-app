@@ -20,7 +20,6 @@ export const NavButton: React.FC<Props> = ({
   to,
   component,
   type,
-  variant,
 }) => {
   const classes = useStyles();
   return (

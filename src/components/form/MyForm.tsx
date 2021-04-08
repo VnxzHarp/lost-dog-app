@@ -1,6 +1,5 @@
 import React from "react";
 import * as Yup from "yup";
-import axios from "axios";
 //components
 import { CenteredButton } from "../common/CenteredButton";
 import { options } from "../utils/ListOptions";
@@ -67,7 +66,6 @@ export const MyForm: React.FC<Props> = ({}) => {
         }, 400);
         sendPostRequest(values);
         let time: any = Date.now();
-        // let hora: any = new Date(time);
         values.date = time.toString();
       }}>
       {({ values, handleSubmit, isSubmitting, handleReset, handleChange }) => (

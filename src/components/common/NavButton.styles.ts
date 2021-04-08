@@ -18,7 +18,12 @@ export const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "#4cc9f0",
     },
     navButton: {
+      minWidth: 95,
+    maxWidth: 150,
       marginLeft: theme.spacing(2),
+      [theme.breakpoints.down("xs")]: {
+            display:"none"
+      },
     },
   })
 );

@@ -1,22 +1,14 @@
-import React from "react";
 import DogeCoin from "../../DogeCoin.jpg";
 //components
 import MediaHeader from "../common/MediaHeader";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Button,
-  Typography,
-} from "@material-ui/core";
+import { CenteredButton } from "../common/CenteredButton";
+import { ResponsiveCardLayout } from "../common/ResponsiveCardLayout";
+import { CardContent, Typography } from "@material-ui/core";
 //styles
-import { useStyles } from "./AboutPage.styles";
 
 const AboutPage = () => {
-  const classes = useStyles();
-
   return (
-    <Card className={classes.root}>
+    <ResponsiveCardLayout>
       <MediaHeader
         alt="DogFinderApp"
         height="140"
@@ -38,19 +30,14 @@ const AboutPage = () => {
           fugiat deleniti? Eum quasi quidem quibusdam.
         </Typography>
       </CardContent>
-      <CardActions className={classes.cardButtons}>
-        <Button
-          className={classes.buttons}
-          onClick={() => {
-            alert("Graciela");
-          }}
-          size="large"
-          color="primary"
-          variant="contained">
-          Donate
-        </Button>
-      </CardActions>
-    </Card>
+      <CenteredButton
+        text="Donate"
+        variant="contained"
+        onClick={() => {
+          alert("Graciela");
+        }}
+      />
+    </ResponsiveCardLayout>
   );
 };
 

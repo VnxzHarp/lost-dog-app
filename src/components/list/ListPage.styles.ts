@@ -14,6 +14,7 @@ export const useStyles = makeStyles({
     background: "#f72585",
     borderRadius: 5,
     color: "#3a0ca3",
+    margin : 5 
   },
   formControlButton: {
     background: "linear-gradient(45deg, #FE6BBB 30%, #FF8E53 90%)",
@@ -23,6 +24,9 @@ export const useStyles = makeStyles({
     color: "white",
     height: 48,
     padding: "0 30px",
+    margin: 5
+    ,minWidth: 120,
+    maxWidth: 300,
   },
   gridContainer: {
     marginTop: 5,
